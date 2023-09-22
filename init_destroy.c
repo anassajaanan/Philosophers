@@ -6,14 +6,11 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:15:45 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/22 09:48:39 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/22 10:36:54 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
-#include <sys/_pthread/_pthread_mutex_t.h>
-#include <unistd.h>
 
 static int	init_forks(t_fork *forks, int num_philosophers)
 {

@@ -6,14 +6,11 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:58:15 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/22 09:57:15 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/22 10:35:48 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
-#include <sys/_pthread/_pthread_mutex_t.h>
 
 int	philosophers_are_alive(t_philo *philo)
 {
@@ -127,8 +124,8 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	forks = philo->forks;
 	params = philo->params;
-	if (philo->id % 2 == 0)
-		ft_usleep(2);
+	// if (philo->id % 2 == 0)
+	// 	ft_usleep(2);
 	while (philosophers_are_alive(philo))
 	{
 		pthread_mutex_lock(&forks[(philo->id + (philo->id % 2)) % params->num_philosophers].mutex);
