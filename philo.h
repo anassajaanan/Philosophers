@@ -6,13 +6,15 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:55:46 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/21 13:55:03 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:48:26 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <stddef.h>
+#include <sys/_pthread/_pthread_mutex_t.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -39,12 +41,19 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	int			id;
-	pthread_t	thread;
-	int			is_eating;
-	int			meals_eaten;
-	size_t		last_meal_time;
-	int			*dead_flag;
+	int				id;
+	pthread_t		thread;
+	t_fork			*forks;
+	struct s_philo	*philos;
+	t_params		*params;
+	int				is_eating;
+	int				meals_eaten;
+	size_t			last_meal_time;
+	size_t			start_time;
+	int				*dead_flag;
+	pthread_mutex_t	*death_mutex;
+	pthread_mutex_t	*meal_mutex;
+	pthread_mutex_t	*output_mutex;
 }				t_philo;
 
 typedef struct s_program

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_destroy_program.c                             :+:      :+:    :+:   */
+/*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:15:45 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/21 13:53:57 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:48:39 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,17 @@ static void	init_philosophers(t_program *program)
 	while (i < program->params.num_philosophers)
 	{
 		philos[i].id = i;
+		philos[i].forks = program->forks;
+		philos[i].philos = program->philos;
+		philos[i].params = &program->params;
 		philos[i].is_eating = 0;
 		philos[i].meals_eaten = 0;
 		philos[i].last_meal_time = get_current_time();
+		philos[i].start_time = get_current_time();
 		philos[i].dead_flag = &program->dead_flag;
+		philos[i].death_mutex = &program->death_mutex;
+		philos[i].meal_mutex = &program->meal_mutex;
+		philos[i].output_mutex = &program->output_mutex;
 		i++;
 	}
 }
