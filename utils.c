@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 08:15:28 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/21 12:13:55 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:11:20 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,3 @@ int	ft_usleep(size_t milliseconds)
 		usleep(500);
 	return (0);
 }
-
-

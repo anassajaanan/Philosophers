@@ -1,5 +1,16 @@
-#include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/23 11:09:49 by aajaanan          #+#    #+#             */
+/*   Updated: 2023/09/23 11:13:03 by aajaanan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "philo.h"
 
 static int	validate_numeric_args(int argc, char **argv)
 {
@@ -20,7 +31,7 @@ static int	validate_numeric_args(int argc, char **argv)
 	return (1);
 }
 
-int	validate_args(t_params *params)
+static int	validate_args(t_params *params)
 {
 	if (params->num_philosophers > 200)
 	{

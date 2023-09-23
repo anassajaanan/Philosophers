@@ -1,14 +1,15 @@
 NAME =		philo
 
-SRCS =		main.c \
+SRCS =		philo.c \
 			parsing.c \
-			init_destroy.c \
+			philo_init.c \
+			philo_destroy.c \
 			thread_management.c \
 			utils.c \
 
 OBJS =		$(SRCS:.c=.o)
 
-CC	 =		gcc
+CC	 =		cc
 # CFLAGS =	-Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
 CFLAGS =	-g3 -pthread -fsanitize=thread
 

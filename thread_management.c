@@ -5,22 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 13:05:25 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/21 17:40:39 by aajaanan         ###   ########.fr       */
+/*   Created: 2023/09/23 12:09:27 by aajaanan          #+#    #+#             */
+/*   Updated: 2023/09/23 12:54:56 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-int	create_philosopher_threads(t_program *program)
+int	create_philosopher_threads(t_philo *philos)
 {
-	int		i;
-	t_philo	*philos;
+	int	i;
 
 	i = 0;
-	philos = program->philos;
-	while (i < program->params.num_philosophers)
+	while (i < philos->params->num_philosophers)
 	{
 		if (pthread_create(&philos[i].thread, NULL, &routine, &philos[i]) != 0)
 		{
@@ -34,7 +31,7 @@ int	create_philosopher_threads(t_program *program)
 
 int	create_inspector_thread(t_program *program)
 {
-	if (pthread_create(&program->inspector, NULL, &inspector, program) != 0)
+	if (pthread_create(&program->inspector_thread, NULL, &inspector, program) != 0)
 	{
 		ft_putstr_fd("Error: failed to create thread\n", STDERR_FILENO);
 		return (1);
@@ -42,14 +39,12 @@ int	create_inspector_thread(t_program *program)
 	return (0);
 }
 
-int	join_philosopher_threads(t_program *program)
+int	join_philosopher_threads(t_philo *philos)
 {
-	int		i;
-	t_philo	*philos;
+	int	i;
 
 	i = 0;
-	philos = program->philos;
-	while (i < program->params.num_philosophers)
+	while (i < philos->params->num_philosophers)
 	{
 		if (pthread_join(philos[i].thread, NULL) != 0)
 		{
@@ -61,11 +56,11 @@ int	join_philosopher_threads(t_program *program)
 	return (0);
 }
 
-int	join_inspector_thread(t_program *program)
+int	join_inspector_thread(pthread_t inspector_thread)
 {
-	if (pthread_join(program->inspector, NULL) != 0)
+	if (pthread_join(inspector_thread, NULL) != 0)
 	{
-		ft_putstr_fd("Error: failed to join thread\n", STDERR_FILENO);
+		ft_putstr_fd("Error: failed to join inspector thread\n", STDERR_FILENO);
 		return (1);
 	}
 	return (0);
