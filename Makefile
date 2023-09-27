@@ -11,7 +11,7 @@ OBJS =		$(SRCS:.c=.o)
 
 CC	 =		cc
 # CFLAGS =	-Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
-CFLAGS =	-g3 -pthread -fsanitize=thread
+CFLAGS =	-Wall -Wextra -Werror
 
 
 all:		$(NAME)

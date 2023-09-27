@@ -6,12 +6,13 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:12:23 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 13:23:51 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:34:12 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <pthread.h>
+#include <stddef.h>
 
 int	philosophers_are_alive(t_philo *philo)
 {
@@ -37,7 +38,7 @@ void	print_message(t_philo *philo, char *message)
 
 int	is_philosopher_dead(t_philo *philo)
 {
-	int	time;
+	size_t	time;
 	
 	pthread_mutex_lock(philo->meal_mutex);
 	time = get_current_time() - philo->last_meal_time;
