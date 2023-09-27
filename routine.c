@@ -33,7 +33,7 @@ static void	eat(t_philo *philo)
 	ft_usleep(philo->params->time_to_eat);
 	philo->is_eating = 0;
 	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);	
+	pthread_mutex_unlock(philo->left_fork);
 }
 
 static void	sleep_and_think(t_philo *philo)
@@ -45,13 +45,11 @@ static void	sleep_and_think(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->params->time_to_eat);
-	
 	while (philosophers_are_alive(philo))
 	{
 		eat(philo);

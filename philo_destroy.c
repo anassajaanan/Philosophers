@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:18:34 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 12:23:19 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:35:34 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	destroy_mutexes(t_program *program)
 	{
 		if (pthread_mutex_destroy(&program->forks[i]) != 0)
 		{
-			ft_putstr_fd("Error: failed to destroy mutex\n", STDERR_FILENO);
+			ft_putstr_fd("❌ Error: failed to destroy mutex ❌ \n", STDERR_FILENO);
 			return (1);
 		}
 		i++;
@@ -30,7 +30,7 @@ int	destroy_mutexes(t_program *program)
 		|| pthread_mutex_destroy(&program->meal_mutex) != 0
 		|| pthread_mutex_destroy(&program->output_mutex) != 0)
 	{
-		ft_putstr_fd("Error: failed to destroy mutex\n", STDERR_FILENO);
+		ft_putstr_fd("❌ Error: failed to destroy mutex ❌\n", STDERR_FILENO);
 		return (1);
 	}
 	return (0);

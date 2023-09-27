@@ -6,13 +6,11 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:12:23 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/27 17:12:20 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:37:42 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
-#include <stddef.h>
 
 int	philosophers_are_alive(t_philo *philo)
 {
@@ -31,22 +29,20 @@ void	print_message(t_philo *philo, char *message)
 	pthread_mutex_lock(philo->output_mutex);
 	if (philosophers_are_alive(philo))
 	{
-		printf("%zu %d %s\n", get_current_time() - philo->start_time, philo->id, message);
+		printf("%zu %d %s\n", get_current_time() - philo->start_time, philo->id,
+			message);
 	}
 	pthread_mutex_unlock(philo->output_mutex);
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_program	program;
 
 	if (parse_command_line_args(argc, argv, &program.params) != 0)
 		return (1);
-
 	if (init_program(&program) != 0)
 		return (1);
-	
 	if (create_inspector_thread(&program) != 0
 		|| create_philosopher_threads(program.philos) != 0)
 	{

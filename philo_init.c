@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:14:13 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/27 16:55:20 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:36:37 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	init_forks(pthread_mutex_t *forks, int num_philosophers)
 	{
 		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
-			ft_putstr_fd("Error: Failed to initialize mutex\n", STDERR_FILENO);
+			ft_putstr_fd("❌ Error: Failed to initialize mutex ❌ \n",
+				STDERR_FILENO);
 			return (1);
 		}
 		i++;
@@ -67,7 +68,7 @@ int	init_program(t_program *program)
 		|| pthread_mutex_init(&program->meal_mutex, NULL) != 0
 		|| pthread_mutex_init(&program->output_mutex, NULL) != 0)
 	{
-		ft_putstr_fd("Error: Failed to initialize mutex\n", STDERR_FILENO);
+		ft_putstr_fd("❌ Error: Failed to initialize mutex ❌ \n", STDERR_FILENO);
 		return (1);
 	}
 	init_philosophers(program);
