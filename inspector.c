@@ -15,7 +15,7 @@
 static int	is_philosopher_dead(t_philo *philo)
 {
 	size_t	time;
-	
+
 	pthread_mutex_lock(philo->meal_mutex);
 	time = get_current_time() - philo->last_meal_time;
 	if (time > philo->params->time_to_die && philo->is_eating == 0)
@@ -71,7 +71,6 @@ static int	all_philosophers_have_eaten(t_philo *philos)
 	return (1);
 }
 
-
 void	*inspector(void *arg)
 {
 	t_philo	*philos;
@@ -79,8 +78,9 @@ void	*inspector(void *arg)
 	philos = (t_philo *)arg;
 	while (1)
 	{
-		if (check_dead_philosophers(philos) || all_philosophers_have_eaten(philos))
-			break;
+		if (check_dead_philosophers(philos)
+			|| all_philosophers_have_eaten(philos))
+			break ;
 	}
 	return (arg);
 }
