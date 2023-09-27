@@ -6,13 +6,14 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:55:46 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 12:55:06 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:21:03 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <sys/_pthread/_pthread_mutex_t.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,6 +31,16 @@ typedef struct params
 	int		num_times_to_eat;
 }			t_params;
 
+typedef struct s_fork
+{
+	int				id;
+	int				is_taken;
+	int				owner_id;
+	pthread_mutex_t	mutex;
+}					t_fork;
+
+
+
 typedef struct s_philo
 {
 	int				id;
@@ -41,13 +52,18 @@ typedef struct s_philo
 	size_t			last_meal_time;
 	size_t			start_time;
 	
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	// pthread_mutex_t	*left_fork;
+	// pthread_mutex_t	*right_fork;
+	// int				*left_fork_taken;
+	// int				*right_fork_taken;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
 	
 	int				*dead_flag;
 	pthread_mutex_t	*death_mutex;
 	pthread_mutex_t	*meal_mutex;
 	pthread_mutex_t	*output_mutex;
+	pthread_mutex_t *owner_mutex;
 }					t_philo;
 
 typedef struct s_program
@@ -55,12 +71,14 @@ typedef struct s_program
 	t_params		params;
 	pthread_t		inspector_thread;
 	t_philo			philos[MAX_NUM_PHILOSOPHERS];
-	pthread_mutex_t	forks[MAX_NUM_PHILOSOPHERS];
+	// pthread_mutex_t	forks[MAX_NUM_PHILOSOPHERS];
+	t_fork			forks[MAX_NUM_PHILOSOPHERS];
 	
 	int				dead_flag;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	output_mutex;
+	pthread_mutex_t owner_mutex;
 }					t_program;
 
 void	*routine(void *arg);
