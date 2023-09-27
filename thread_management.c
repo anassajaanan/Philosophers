@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:09:27 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 12:54:56 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:59:13 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	create_philosopher_threads(t_philo *philos)
 
 int	create_inspector_thread(t_program *program)
 {
-	if (pthread_create(&program->inspector_thread, NULL, &inspector, program) != 0)
+	if (pthread_create(&program->inspector_thread, NULL, &inspector, program->philos) != 0)
 	{
 		ft_putstr_fd("Error: failed to create thread\n", STDERR_FILENO);
 		return (1);

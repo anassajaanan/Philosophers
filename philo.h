@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:55:46 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 12:55:06 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:06:20 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,9 @@ void	ft_putstr_fd(char *s, int fd);
 long	ft_atoi(const char *str);
 size_t	get_current_time(void);
 int		ft_usleep(size_t milliseconds);
+
+
+int		philosophers_are_alive(t_philo *philo);
+void	print_message(t_philo *philo, char *message);
 
 #endif /* PHILO_H */

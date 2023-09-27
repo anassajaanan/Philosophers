@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:14:13 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/23 12:23:49 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:55:20 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static int	init_forks(pthread_mutex_t *forks, int num_philosophers)
 	return (0);
 }
 
-
-static int	init_philosophers(t_program *program)
+static void	init_philosophers(t_program *program)
 {
 	int				i;
 	t_philo			*philos;
@@ -49,26 +48,28 @@ static int	init_philosophers(t_program *program)
 		philos[i].meals_eaten = 0;
 		philos[i].last_meal_time = get_current_time();
 		philos[i].start_time = get_current_time();
-		
 		philos[i].left_fork = &forks[i];
 		philos[i].right_fork = &forks[(i + 1) % params->num_philosophers];
-
 		philos[i].dead_flag = &program->dead_flag;
 		philos[i].death_mutex = &program->death_mutex;
 		philos[i].meal_mutex = &program->meal_mutex;
 		philos[i].output_mutex = &program->output_mutex;
-		i++;	
+		i++;
 	}
-	return (0);
 }
 
 int	init_program(t_program *program)
 {
-	init_forks(program->forks, program->params.num_philosophers);
-	init_philosophers(program);
+	if (init_forks(program->forks, program->params.num_philosophers) != 0)
+		return (1);
 	program->dead_flag = 0;
-	pthread_mutex_init(&program->death_mutex, NULL);
-	pthread_mutex_init(&program->meal_mutex, NULL);
-	pthread_mutex_init(&program->output_mutex, NULL);
+	if (pthread_mutex_init(&program->death_mutex, NULL) != 0
+		|| pthread_mutex_init(&program->meal_mutex, NULL) != 0
+		|| pthread_mutex_init(&program->output_mutex, NULL) != 0)
+	{
+		ft_putstr_fd("Error: Failed to initialize mutex\n", STDERR_FILENO);
+		return (1);
+	}
+	init_philosophers(program);
 	return (0);
 }

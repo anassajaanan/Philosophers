@@ -5,12 +5,13 @@ SRCS =		philo.c \
 			philo_init.c \
 			philo_destroy.c \
 			thread_management.c \
+			routine.c \
+			inspector.c \
 			utils.c \
 
 OBJS =		$(SRCS:.c=.o)
 
 CC	 =		cc
-# CFLAGS =	-Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
 CFLAGS =	-Wall -Wextra -Werror
 
 
