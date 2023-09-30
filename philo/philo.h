@@ -6,18 +6,18 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:55:46 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/27 17:06:20 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:00:38 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 # include <sys/time.h>
-# include <unistd.h>
 
 # define MAX_NUM_PHILOSOPHERS 200
 
@@ -63,9 +63,6 @@ typedef struct s_program
 	pthread_mutex_t	output_mutex;
 }					t_program;
 
-void				*routine(void *arg);
-void				*inspector(void *arg);
-
 // #====================# parsing.c #====================#
 int					parse_command_line_args(int argc, char **argv,
 						t_params *params);
@@ -79,6 +76,12 @@ int					create_inspector_thread(t_program *program);
 int					join_philosopher_threads(t_philo *philos);
 int					join_inspector_thread(pthread_t inspector_thread);
 
+// #====================# routine.c #====================#
+void				*routine(void *arg);
+
+// #====================# inspector.c #====================#
+void				*inspector(void *arg);
+
 // #====================# philo_destroy.c #====================#
 int					destroy_mutexes(t_program *program);
 
@@ -88,7 +91,6 @@ void				ft_putstr_fd(char *s, int fd);
 long				ft_atoi(const char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t milliseconds);
-
 int					philosophers_are_alive(t_philo *philo);
 void				print_message(t_philo *philo, char *message);
 
