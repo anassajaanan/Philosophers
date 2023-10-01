@@ -1,10 +1,11 @@
 NAME =		philo_bonus
 
-SRCS =		philo.c \
-			parsing.c \
-			philo_init.c \
-			inspector.c \
-			utils.c \
+SRCS =		philo_bonus.c \
+			parsing_bonus.c \
+			philo_init_bonus.c \
+			inspector_bonus.c \
+			routine_bonus.c \
+			utils_bonus.c \
 
 OBJS =		$(SRCS:.c=.o)
 

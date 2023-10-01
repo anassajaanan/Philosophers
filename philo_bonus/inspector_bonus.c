@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inspector.c                                        :+:      :+:    :+:   */
+/*   inspector_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 10:34:59 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/10/01 15:26:32 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:51:00 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 void	print_message(t_philo *philo, char *message)
 {

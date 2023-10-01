@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:48:59 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/10/01 15:08:52 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:52:31 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <fcntl.h>
 # include <pthread.h>
@@ -45,15 +45,18 @@ typedef struct s_philo
 	sem_t		*death;
 }				t_philo;
 
-// #=================# parsing.c #=================#
+// #=================# parsing_bonus.c #=================#
 int				parse_command_line_args(int argc, char **argv, t_philo *philo);
 
-// #=================# philo_init.c #=================#
+// #=================# philo_init_bonus.c #=================#
 void			init_semaphores(t_philo *philo);
 
-// #=================# philo.c #=================#
+// #=================# inspector_bonus.c #=================#
 void			print_message(t_philo *philo, char *message);
 void			*inspector(void *arg);
+
+// #=================# routine_bonus.c #=================#
+void			routine(t_philo *philo);
 
 // #=================# utils.c #=================#
 int				is_numeric(const char *str);
@@ -62,4 +65,4 @@ long			ft_atoi(const char *str);
 size_t			get_current_time(void);
 int				ft_usleep(size_t milliseconds);
 
-#endif /* PHILO_H */
+#endif /* PHILO_BONUS_H */
