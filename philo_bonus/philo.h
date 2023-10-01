@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 11:48:10 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/30 11:59:02 by aajaanan         ###   ########.fr       */
+/*   Created: 2023/10/01 09:48:59 by aajaanan          #+#    #+#             */
+/*   Updated: 2023/10/01 10:36:00 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,65 @@
 # define PHILO_H
 
 
+# include <unistd.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <pthread.h>
-# include <sys/time.h>
-# include <string.h>
 # include <semaphore.h>
-# include <fcntl.h>
-# include <sys/stat.h>
+# include <signal.h>
+# include <sys/time.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <signal.h>
+# include <string.h>
 
+
+typedef struct params
+{
+	int				num_philosophers;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				num_times_to_eat;
+}					t_params;
 
 typedef struct s_philo
 {
-	int			id;
-	pthread_t	thread;
-
-	int			num_philosophers;
-	size_t		time_to_die;
-	size_t		time_to_eat;
-	size_t		time_to_sleep;
-	int			num_times_to_eat;
-
-	int			meals_eaten;
-	size_t		start_time;
-	size_t		last_meal_time;
-
-	sem_t		*fork;
-	sem_t		*output;
-	sem_t		*death;
+	int				id;
+	pthread_t		thread;
 	
-}			t_philo;
+	int				num_philosophers;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				num_times_to_eat;
+
+	size_t			start_time;
+	size_t			last_meal_time;
+	int				meals_eaten;
+	
+	sem_t			*forks;
+	sem_t			*output;
+	sem_t			*death;
+}					t_philo;
 
 
+// #=================# parsing.c #=================#
+int	parse_command_line_args(int argc, char **argv, t_philo *philo);
 
-// #====================# utils.c #====================#
+// #=================# philo_init.c #=================#
+void	init_semaphores(t_philo *philo);
+
+// #=================# philo.c #=================#
+void	print_message(t_philo *philo, char *message);
+void	*inspector(void *arg);
+
+// #=================# utils.c #=================#
 int					is_numeric(const char *str);
 void				ft_putstr_fd(char *s, int fd);
 long				ft_atoi(const char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t milliseconds);
-
-// #====================# parsing.c #====================#
-int	parse_command_line_args(int argc, char **argv, t_philo *philo);
 
 
 #endif /* PHILO_H */
