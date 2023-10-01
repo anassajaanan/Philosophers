@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:05:01 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/09/27 18:56:43 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:06:31 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	eat(t_philo *philo)
 	}
 	pthread_mutex_lock(philo->right_fork);
 	print_message(philo, "has taken a fork");
-	philo->is_eating = 1;
 	print_message(philo, "is eating");
+	philo->is_eating = 1;
 	pthread_mutex_lock(philo->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	philo->meals_eaten++;
