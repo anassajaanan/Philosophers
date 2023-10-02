@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:53:44 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/10/01 18:33:19 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/10/02 08:34:24 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,11 @@ int	child(t_philo *philo)
 int	create_philosophers(t_philo *philo)
 {
 	int		i;
-	pid_t	*pid;
+	pid_t	pid[200];
 
-	pid = (pid_t *)malloc(sizeof(pid_t) * philo->num_philosophers);
-	if (pid == NULL)
-		return (1);
-	i = -1;
+	i = 0;
 	philo->start_time = get_current_time();
-	while (++i < philo->num_philosophers)
+	while (i < philo->num_philosophers)
 	{
 		pid[i] = fork();
 		if (pid[i] < 0)
@@ -66,12 +63,12 @@ int	create_philosophers(t_philo *philo)
 			philo->id = i;
 			break ;
 		}
+		i++;
 	}
 	if (pid[philo->id] == 0 && !child(philo))
 		return (1);
 	else
 		parent(philo, pid);
-	free(pid);
 	return (0);
 }
 

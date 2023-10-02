@@ -6,7 +6,7 @@
 /*   By: aajaanan <aajaanan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:48:59 by aajaanan          #+#    #+#             */
-/*   Updated: 2023/10/01 18:52:31 by aajaanan         ###   ########.fr       */
+/*   Updated: 2023/10/02 08:33:48 by aajaanan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+# define MAX_NUM_PHILOSOPHERS 200
 
 typedef struct s_philo
 {
